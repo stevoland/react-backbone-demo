@@ -19,7 +19,8 @@
   "dependencies": {
     "react-tools": "~0.5.2",
     "react-app-controller": "git+https://github.com/stevoland/react-app-controller.git#page-lifecycle-methods",
-    "backfire": "git+https://github.com/stevoland/backfire"
+    "backfire": "git+https://github.com/stevoland/backfire",
+    "underscore": "~1.5.2"
   },
   "devDependencies": {
     "reactify": "~0.4.0",

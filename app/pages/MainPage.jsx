@@ -2,6 +2,7 @@ var React          = require('react-tools/build/modules/React');
 var ReactApp       = require('react-app-controller/alternative');
 var Ticks          = require('../components/Ticks.jsx');
 var Layout         = require('../components/Layout.jsx');
+var JobsCollection = require('../collections/JobsCollection');
 
 var MainPage = ReactApp.createPage({
   pageWillMount: function () {
@@ -10,6 +11,9 @@ var MainPage = ReactApp.createPage({
 
   pageDidMount: function () {
     console.info('pageDidMount');
+
+    this.collection = new JobsCollection();
+    this.collection.on('change', this.render.bind(this));
   },
 
   pageWillUnmount: function () {
@@ -21,12 +25,14 @@ var MainPage = ReactApp.createPage({
   },
 
   render: function () {
+    console.info(this.collection);
     return (
       <Layout selected="main">
         <div className='MainPage'>
           <div>MainPage</div>
           <Ticks />
           <a href="/about">About</a>
+          <div></div>
         </div>
       </Layout>
     );
