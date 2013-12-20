@@ -28,4 +28,3 @@ var controller = createController({
 document.addEventListener('DOMContentLoaded', function () {
   controller.render(document.body, '/');
 });
-

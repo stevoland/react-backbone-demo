@@ -2,9 +2,10 @@
   "name": "react-backbone-demo",
   "version": "0.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./app/index.js",
   "scripts": {
-    "build": "./node_modules/.bin/browserify --transform reactify ./app/index.js > ./static/bundle.js",
+    "start": "./node_modules/.bin/watchify -o ./static/bundle.js -d .",
+    "build": "NODE_ENV=production ./node_modules/.bin/browserify . | uglifyjs -cm > ./static/bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -28,5 +29,11 @@
     "xcss": "~0.14.1",
     "uglify-js": "~2.4.3",
     "normalize-css": "~2.2.0"
+  },
+  "browserify": {
+    "transform": [
+      "reactify",
+      "envify"
+    ]
   }
 }
