@@ -1,18 +1,5 @@
-var React = require('react');
-
-var MenuItem = React.createClass({
-  render: function () {
-    var className = this.props.selected ? 'selected' : null;
-    var content = !this.props.selected ?
-      (<a href={this.props.url}>{this.props.text}</a>) : this.props.text;
-
-    return (
-      <li className={className}>
-        {content}
-      </li>
-    );
-  }
-});
+var React = require('react/addons');
+var SideNav = require('./SideNav.jsx');
 
 var Layout = React.createClass({
 
@@ -20,47 +7,31 @@ var Layout = React.createClass({
     return {
       pages: [
         {
-          id: 'main',
-          text: 'Main',
+          id: 'project',
+          text: 'Project',
           url: '/'
         },
         {
-          id: 'about',
-          text: 'About',
-          url: '/about'
+          id: 'jobs',
+          text: 'Jobs',
+          url: '/jobs'
         }
       ]
     };
   },
 
-  getInitialState: function () {
-    return {
-      current: 'main'
-    }
-  },
-
   render: function () {
-    var selected = this.props.selected;
-    var items = this.props.pages.map(function (page) {
-      var isSelected = (page.id === selected);
-
-      return MenuItem({
-        selected: isSelected,
-        url: page.url,
-        text: page.text
-      });
-    });
-
     return (
-      <div>
-        <ul>
-          {items}
-        </ul>
-        {this.props.children}
+      <div className="row">
+        <div className="col-md-2">
+          <SideNav pages={this.props.pages} selected={this.props.selected} />
+        </div>
+        <div className="col-md-10">
+          {this.props.children}
+        </div>
       </div>
     );
   }
 });
-
 
 module.exports = Layout;

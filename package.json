@@ -2,9 +2,10 @@
   "name": "react-backbone-demo",
   "version": "0.0.0",
   "description": "",
-  "main": "./app/index.js",
+  "main": "./app/client.js",
   "scripts": {
-    "start": "./node_modules/.bin/watchify -o ./static/bundle.js -d .",
+    "watch": "./node_modules/.bin/watchify -o ./static/bundle.js -d .",
+    "serve": "node server.js",
     "build": "NODE_ENV=production ./node_modules/.bin/browserify . | ./node_modules/.bin/uglifyjs -cm > ./static/bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,12 +20,11 @@
   "license": "MIT",
   "dependencies": {
     "react": "~0.8",
-    "react-app-controller": "git+https://github.com/stevoland/react-app-controller.git#page-lifecycle-methods",
-    "backfire": "git+https://github.com/stevoland/backfire",
-    "underscore": "~1.5.2"
+    "react-app-page": "git+https://github.com/stevoland/react-app-page.git",
+    "react-bootstrap": "git+https://github.com/stevoland/react-bootstrap.git",
+    "backfire": "git+https://github.com/stevoland/backfire"
   },
   "devDependencies": {
-    "reactify": "~0.4.0",
     "browserify": "~2.35.4",
     "xcss": "~0.14.1",
     "uglify-js": "~2.4.3",
