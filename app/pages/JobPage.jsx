@@ -18,11 +18,13 @@ module.exports = ReactApp.createPage({
 
     return (
       <Layout selected="jobs">
-        <div className="JobPage">
+        <div className="page JobPage">
           <JobsSection
             collection={collection}
-            model={model}
+            selectedJob={model}
             controller={this.controller}
+            onClone={this.handleClone.bind(this)}
+            onDelete={this.handleDelete.bind(this)}
           />
           <JobDetails model={model} />
         </div>

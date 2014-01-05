@@ -13,9 +13,19 @@ var controller = createController({
   },
 
   onClick: function (e) {
-    if (e.target.tagName === 'A' && e.target.attributes.href) {
-      e.preventDefault();
-      this.navigate(e.target.attributes.href.value);
+    var current = e.target,
+        href;
+
+    while (current) {
+      if (current.tagName === 'A') {
+        href = current.attributes.href && current.attributes.href.value;
+        if (href && href.indexOf('#') !== 0) {
+          e.preventDefault();
+          this.navigate(href);
+        }
+      }
+
+      current = current.parentNode;
     }
   },
 

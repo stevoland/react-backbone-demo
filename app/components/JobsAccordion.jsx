@@ -1,24 +1,90 @@
 var React          = require('react/addons');
 
-var Collapse       = require('react-bootstrap/lib/Collapse');
+var CollapsePanel  = require('react-bootstrap/lib/CollapsePanel');
 var JobList        = require('./JobList.jsx');
-var JobListItem    = require('./JobListItem.jsx');
+
 
 module.exports     = React.createClass({
-  getDefaultProps: function () {
+  getInitialState: function () {
     return {
-      collection: [],
-      disciplines: []
+      trees: {}
     };
   },
 
-  render: function () {
+  openFlags: {},
+
+  renderDisciplineAccordion: function (id) {
+    var disciplineName = this.props.disciplines[id];
+
+    var bundles = Object.keys(this.state.trees[id]).map(
+      function (bundleName) {
+        return this.renderBundleAccordion(id, bundleName);
+      }.bind(this)
+    );
+
+    return (
+      <CollapsePanel
+        headingChildren={disciplineName}
+        key={id}
+        id={id}
+        default={true}
+        isStateful={true}
+        isOpen={true}>
+        <div className="panel-group">
+          {bundles}
+        </div>
+      </CollapsePanel>
+    );
+  },
+
+  renderBundleAccordion: function (disciplineId, bundleName) {
+    var id = disciplineId + '-' + bundleName,
+        headingChildren = (
+          //<span><input type="checkbox" onClick={this.handleCheckboxClick} />{' '}{bundleName}</span>
+          bundleName
+        ),
+        hasNewJob = (this.props.newJobDiscipline === disciplineId && bundleName === 'Unbundled');
+
+    return (
+      <CollapsePanel
+        headingChildren={headingChildren}
+        key={bundleName}
+        default={true}
+        isStateful={true}
+        isOpen={true}>
+          <JobList
+            jobs={this.state.trees[disciplineId][bundleName]}
+            checkedIds={this.props.checkedIds}
+            onChecked={this.props.onChecked}
+            selectedJob={this.props.selectedJob}
+            addNewJob={hasNewJob}
+            onJobNameChange={this.props.onJobNameChange}
+            onNewJobSave={this.props.onNewJobSave}
+            onNewJobCancel={this.props.onNewJobCancel}
+          />
+      </CollapsePanel>
+    );
+  },
+
+  handleCheckboxClick: function (e) {
+    e.stopPropagation();
+  },
+
+  componentWillMount: function () {
+    this.configureState(this.props);
+  },
+
+  componentWillReceiveProps: function (nextProps) {
+    this.configureState(nextProps);
+  },
+
+  configureState: function (props) {
     var trees = {};
 
-    if (this.props.collection) {
-      this.props.collection.forEach(function (model) {
+    if (props.collection) {
+      props.collection.forEach(function (model) {
         var discipline = model.get('discipline');
-        var bundle = model.get('bundle') || 'Unbundled';
+        var bundle = model.get('bundle');
 
         if (!trees[discipline]) {
           trees[discipline] = {};
@@ -32,46 +98,24 @@ module.exports     = React.createClass({
       }.bind(this));
     }
 
-    console.info(trees);
-
-    // var source = Object.keys(trees).map(function (discipline) {
-    //   return {
-    //     displayNode: React.DOM.span(
-    //       {key: discipline},
-    //       this.props.disciplines[discipline]
-    //     ),
-    //     children: Object.keys(trees[discipline]).map(function (bundle) {
-    //       return {
-    //         displayNode: React.DOM.span(
-    //           {key: bundle},
-    //           bundle
-    //         ),
-    //         children: [{
-    //           displayNode: JobList(
-    //             {
-    //               key: 'children-' + bundle,
-    //               jobs: trees[discipline][bundle]
-    //             }
-    //           )
-    //         }]
-    //       }
-    //     })
-    //   };
-    // }.bind(this));
-
-    var accordions = Object.keys(trees).map(function (discipline) {
-      var disciplineName = this.props.disciplines[discipline]
-
-      return {
-        <Collapse headerChildren={disciplineName} key={discipline}>
-          {disciplineName + ' test'}
-        </Collapse>
+    if (this.props.newJobDiscipline && !trees[this.props.newJobDiscipline]) {
+      trees[this.props.newJobDiscipline] = {
+        'Unbundled': []
       };
-    }.bind(this));
+    }
 
+    this.setState({
+      trees: trees
+    });
+  },
+
+  render: function () {
+    var accordions = Object.keys(this.state.trees).map(
+      this.renderDisciplineAccordion
+    );
 
     return (
-      <div>
+      <div className="panel-group">
         {accordions}
       </div>
     );

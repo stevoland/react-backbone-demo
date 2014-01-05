@@ -22,11 +22,11 @@ var Layout = React.createClass({
 
   render: function () {
     return (
-      <div className="row">
-        <div className="col-md-2">
+      <div className="flex-container">
+        <div className="flex-leftbar">
           <SideNav pages={this.props.pages} selected={this.props.selected} />
         </div>
-        <div className="col-md-10">
+        <div className="flex-content">
           {this.props.children}
         </div>
       </div>

@@ -15,10 +15,12 @@ module.exports = ReactApp.createPage({
   render: function () {
     return (
       <Layout selected="jobs">
-        <div className="JobsPage">
+        <div className="page JobsPage">
           <JobsSection
             collection={this.getModel()}
             controller={this.controller}
+            onClone={this.handleClone.bind(this)}
+            onDelete={this.handleDelete.bind(this)}
           />
         </div>
       </Layout>
