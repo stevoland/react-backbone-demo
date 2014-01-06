@@ -4,6 +4,10 @@ var HomePage = require('./pages/HomePage.jsx');
 var JobPage = require('./pages/JobPage.jsx');
 var NewJobPage = require('./pages/NewJobPage.jsx');
 
+// Only required to get react-devtools to work:
+// https://github.com/facebook/react-devtools#the-react-tab-doesnt-show-up
+window.React = require('react/addons');
+
 var controller = createController({
   routes: {
     '/': HomePage,
