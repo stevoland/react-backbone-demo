@@ -22,7 +22,8 @@
     "react": "~0.8",
     "react-app-page": "git+https://github.com/stevoland/react-app-page.git",
     "react-bootstrap": "git+https://github.com/stevoland/react-bootstrap.git",
-    "backfire": "git+https://github.com/stevoland/backfire"
+    "backfire": "git+https://github.com/stevoland/backfire",
+    "express": "~3.4.7"
   },
   "devDependencies": {
     "browserify": "~2.35.4",
