@@ -7,7 +7,7 @@ var JobModel             = require('../models/JobModel');
 var BackboneMixin        = require('../mixins/BackboneMixin');
 var JobsCollectionMixin  = require('../mixins/JobsCollectionMixin');
 
-module.exports = ReactApp.createPage({
+var newJobPage = ReactApp.createPage({
   mixins: [JobsCollectionMixin, BackboneMixin],
 
   handleNewJobSave: function () {
@@ -66,3 +66,5 @@ module.exports = ReactApp.createPage({
     );
   }
 });
+
+module.exports = newJobPage;

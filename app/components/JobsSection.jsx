@@ -4,7 +4,7 @@ var ButtonDropdown = require('react-bootstrap/lib/ButtonDropdown');
 var JobsAccordion  = require('./JobsAccordion.jsx');
 var Disciplines    = require('../const/Disciplines');
 
-module.exports = React.createClass({
+var JobsSection = React.createClass({
   handleCreateClick: function (key) {
     this.props.controller.navigate('/jobs/new/' + key);
   },
@@ -109,3 +109,5 @@ module.exports = React.createClass({
     );
   }
 });
+
+module.exports = JobsSection;

@@ -1,7 +1,7 @@
 var React                = require('react/addons');
 var Button               = require('react-bootstrap/lib/Button');
 
-module.exports = React.createClass({
+var JobDetails = React.createClass({
   render: function () {
     return (
       <div className="JobDetails">
@@ -11,3 +11,5 @@ module.exports = React.createClass({
     );
   }
 });
+
+module.exports = JobDetails;

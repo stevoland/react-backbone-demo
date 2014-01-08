@@ -1,6 +1,6 @@
 var React          = require('react/addons');
 
-module.exports = React.createClass({
+var JobListItem = React.createClass({
   onClick: function (e) {
     this.props.onChecked(this.props.id);
   },
@@ -22,3 +22,5 @@ module.exports = React.createClass({
     );
   }
 });
+
+module.exports = JobListItem;

@@ -4,7 +4,7 @@ var CollapsePanel  = require('react-bootstrap/lib/CollapsePanel');
 var JobList        = require('./JobList.jsx');
 
 
-module.exports     = React.createClass({
+var JobsAccordion = React.createClass({
   getInitialState: function () {
     return {
       trees: {}
@@ -121,3 +121,5 @@ module.exports     = React.createClass({
     );
   }
 });
+
+module.exports = JobsAccordion;

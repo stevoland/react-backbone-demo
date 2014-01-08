@@ -5,7 +5,7 @@ var JobsSection          = require('../components/JobsSection.jsx');
 var BackboneMixin        = require('../mixins/BackboneMixin');
 var JobsCollectionMixin  = require('../mixins/JobsCollectionMixin');
 
-module.exports = ReactApp.createPage({
+var JobsPage = ReactApp.createPage({
   mixins: [JobsCollectionMixin, BackboneMixin],
 
   componentDidMount: function () {
@@ -27,3 +27,5 @@ module.exports = ReactApp.createPage({
     );
   }
 });
+
+module.exports = JobsPage;

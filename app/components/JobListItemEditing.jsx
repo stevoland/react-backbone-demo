@@ -1,6 +1,6 @@
 var React          = require('react/addons');
 
-module.exports = React.createClass({
+var JobListItemEditing = React.createClass({
   handleBlur: function (e) {
     if (event.target.value) {
       if (!this.state.saved) {
@@ -71,3 +71,5 @@ module.exports = React.createClass({
     );
   }
 });
+
+module.exports = JobListItemEditing;

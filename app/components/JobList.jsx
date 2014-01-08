@@ -4,7 +4,7 @@ var ReactTransitionGroup  = React.addons.TransitionGroup;
 var JobListItem           = require('./JobListItem.jsx');
 var JobListItemEditing    = require('./JobListItemEditing.jsx');
 
-module.exports = React.createClass({
+var JobList = React.createClass({
   renderItem: function (model) {
     var id = model.get('id');
 
@@ -49,3 +49,5 @@ module.exports = React.createClass({
     );
   }
 });
+
+module.exports = JobList;

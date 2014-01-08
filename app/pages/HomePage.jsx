@@ -2,7 +2,7 @@ var React          = require('react/addons');
 var ReactApp       = require('react-app-page');
 var Layout         = require('../components/Layout.jsx');
 
-module.exports = ReactApp.createPage({
+var HomePage = ReactApp.createPage({
   componentDidMount: function () {
     this.setTitle('Project');
   },
@@ -18,3 +18,5 @@ module.exports = ReactApp.createPage({
     );
   }
 });
+
+module.exports = HomePage;
